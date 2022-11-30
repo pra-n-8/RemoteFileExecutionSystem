@@ -24,5 +24,6 @@
   </dependencies>
   <modules>
     <module>src/main/java/server</module>
+    <module>src/main/java/client</module>
   </modules>
 </project>
