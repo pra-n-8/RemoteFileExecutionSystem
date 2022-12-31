@@ -18,13 +18,14 @@ import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class JavaService {
 
     FilesStorageService storageService = new FilesStorageServiceImpl();
 
-    private final Path rootLocation = Path.of("src/JavaService/src/main/resources");
     @RequestMapping(value = "/getServer", method = RequestMethod.GET)
     public ResponseEntity getServer() {
         HttpHeaders headers = new HttpHeaders();
@@ -32,53 +33,42 @@ public class JavaService {
     }
 
     @RequestMapping(value ="/runfile", method = RequestMethod.POST)
-    public void runFile(@RequestParam("file") MultipartFile file){
+    public List runFile(@RequestParam("file") MultipartFile file){
+        List <String> out = new ArrayList<>();
         try {
             storageService.save(file);
 //            System.out.println(rootLocation);
             System.out.println(file.getOriginalFilename());
-            runProcess("pwd");
+
+//            runProcess("pwd");
             System.out.println("**********");
-            runProcess("java /home/kroyooz/Desktop/Masters/Distributed Systems/Project/DS/uploads/"+file.getOriginalFilename());
+            out = runProcess("java D:\\Pranit\\Project\\DS\\uploads\\"+file.getOriginalFilename());
             System.out.println("**********");
 //            runProcess("java "+file);
 //            System.out.println("filename is : "+filepath);r
-
+            storageService.delete(file.getOriginalFilename());
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return out;
     }
-    private void runProcess(String command) throws Exception {
+    private List runProcess(String command) throws Exception {
         Process pro = Runtime.getRuntime().exec(command);
-        printLines(command + " stdout:", pro.getInputStream());
-        printLines(command + " stderr:", pro.getErrorStream());
+        List out = printLines(command + " stdout:", pro.getInputStream());
+
         pro.waitFor();
-        System.out.println(command + " exitValue() " + pro.exitValue());
+        return out;
     }
-    private static void printLines(String cmd, InputStream ins) throws Exception {
+    private List<String> printLines(String cmd, InputStream ins) throws Exception {
         String line = null;
+        List<String> output = new ArrayList<>();
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(ins));
         while ((line = in.readLine()) != null) {
-            System.out.println(cmd + " " + line);
+            output.add(line);
         }
+        return output;
     }
-
-    private Path storeFile(MultipartFile file){
-            try {
-                if (file.isEmpty()) {
-                    return null;
-                }
-                try (InputStream inputStream = file.getInputStream()) {
-                    Files.copy(inputStream,rootLocation,
-                            StandardCopyOption.REPLACE_EXISTING);
-                }
-                return rootLocation;
-            }
-            catch (IOException e) {
-                return null;
-            }
-        }
 
 }
 

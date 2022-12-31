@@ -1,4 +1,4 @@
-services/FilesStorageServiceImpl.class
-interfaces/FilesStorageService.class
-ucd/distributed/Main.class
-ucd/distributed/JavaService.class
+ucd\distributed\JavaService.class
+ucd\distributed\Main.class
+interfaces\FilesStorageService.class
+services\FilesStorageServiceImpl.class

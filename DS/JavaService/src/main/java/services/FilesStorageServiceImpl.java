@@ -1,24 +1,21 @@
 package services;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.nio.file.FileAlreadyExistsException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.util.stream.Stream;
 
 import interfaces.FilesStorageService;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
-import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class FilesStorageServiceImpl implements FilesStorageService {
 
-    private final Path root = Paths.get("/home/kroyooz/Desktop/Masters/Distributed Systems/Project/DS/uploads");
+    private final Path root = Paths.get("D:\\Pranit\\Project\\DS\\uploads");
 
     @Override
     public void init() {
@@ -59,8 +56,9 @@ public class FilesStorageServiceImpl implements FilesStorageService {
     }
 
     @Override
-    public void deleteAll() {
-        FileSystemUtils.deleteRecursively(root.toFile());
+    public void delete(String filename) {
+        File file = new File(root+"\\"+filename);
+        file.delete();
     }
 
     @Override
