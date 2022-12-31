@@ -1,2 +1,4 @@
 /home/kroyooz/Desktop/Masters/Distributed Systems/Project/DS/JavaService/src/main/java/ucd/distributed/JavaService.java
 /home/kroyooz/Desktop/Masters/Distributed Systems/Project/DS/JavaService/src/main/java/ucd/distributed/Main.java
+/home/kroyooz/Desktop/Masters/Distributed Systems/Project/DS/JavaService/src/main/java/interfaces/FilesStorageService.java
+/home/kroyooz/Desktop/Masters/Distributed Systems/Project/DS/JavaService/src/main/java/services/FilesStorageServiceImpl.java
