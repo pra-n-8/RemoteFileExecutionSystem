@@ -6,8 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="DS" />
+        <module name="Server" />
+        <module name="client" />
+        <module name="JavaService" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="javaserver" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="client" options="-parameters" />
+    </option>
   </component>
 </project>
