@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/DS/DS.iml" filepath="$PROJECT_DIR$/DS/DS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DS/JavaService/JavaService.iml" filepath="$PROJECT_DIR$/DS/JavaService/JavaService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DS/server/Server.iml" filepath="$PROJECT_DIR$/DS/server/Server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DS/client/client.iml" filepath="$PROJECT_DIR$/DS/client/client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/it_elites_distributed_system.iml" filepath="$PROJECT_DIR$/.idea/it_elites_distributed_system.iml" />
+    </modules>
+  </component>
+</project>
