@@ -28,7 +28,7 @@ public class JavaService {
     public ResponseEntity getServer() {
         HttpHeaders headers = new HttpHeaders();
         ServerResponseMessage sm = new ServerResponseMessage();
-        sm.setMessage("http://localhost:8080/runfile");
+        sm.setMessage("http://localhost:8083/runfile");
         return new ResponseEntity<>(sm, headers, HttpStatus.CREATED);
     }
 
