@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="container font-xlarge">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="showAlert">
+            Please upload a file to proceed.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <h4 class="position-center" style="text-align: center;"> Please upload your file here</h4>
+        <br><br><br>
+        <div style="text-align: center; padding-left: 138px;">
+        <input type="file" (change)="fileChange($event)" accept=".java">
+        <button type="button" class="btn btn-primary btn-lg" (click)="onSubmit()">Submit</button>
+        </div>
+    </div>
+    <br><br><br>
+    <div class="mb-3 font-xlarge">
+        <label for="exampleFormControlTextarea1" class="form-label">Output</label>
+        <textarea readonly rows="10" class="form-control" [(ngModel)]="output" ></textarea>
+      </div>
+</div>
