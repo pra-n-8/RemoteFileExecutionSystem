@@ -26,5 +26,7 @@
     <module>server</module>
     <module>client</module>
     <module>JavaService</module>
+      <module>PythonService</module>
+    <module>core</module>
   </modules>
 </project>

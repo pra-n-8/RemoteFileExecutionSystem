@@ -1,0 +1,4 @@
+distributed/Main.class
+distributed/PythonService.class
+services/FilesStorageServiceImpl.class
+interfaces/FilesStorageService.class

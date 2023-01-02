@@ -1,9 +1,8 @@
 package ucd.distributed;
 
+import core.messages.ServerResponseMessage;
 import interfaces.FilesStorageService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Configuration;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,12 +11,10 @@ import org.springframework.web.multipart.MultipartFile;
 import services.FilesStorageServiceImpl;
 
 import java.io.BufferedReader;
-import java.io.IOException;
+
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +26,9 @@ public class JavaService {
     @RequestMapping(value = "/getServer", method = RequestMethod.GET)
     public ResponseEntity getServer() {
         HttpHeaders headers = new HttpHeaders();
-        return new ResponseEntity<>("http://localhost:8080/runfile", headers, HttpStatus.CREATED);
+        ServerResponseMessage sm = new ServerResponseMessage();
+        sm.setMessage("http://localhost:8080/runfile");
+        return new ResponseEntity<>(sm, headers, HttpStatus.CREATED);
     }
 
     @RequestMapping(value ="/runfile", method = RequestMethod.POST)
