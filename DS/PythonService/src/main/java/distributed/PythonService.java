@@ -40,7 +40,7 @@ public class PythonService {
 //            runProcess("pwd");
             System.out.println("**********");
 //
-            out = runProcess("python3 /home/kroyooz/Desktop/Masters/Distributed Systems/Project/DS/uploads/"+file.getOriginalFilename());
+            out = runProcess("python D:\\Pranit\\Project\\DS\\uploads\\"+file.getOriginalFilename());
 //            out=p;
             System.out.println("**********");
 //            runProcess("java "+file);

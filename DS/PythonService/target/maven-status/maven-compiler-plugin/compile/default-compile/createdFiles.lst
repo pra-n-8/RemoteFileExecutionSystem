@@ -1,4 +1,4 @@
-distributed/Main.class
-distributed/PythonService.class
-services/FilesStorageServiceImpl.class
-interfaces/FilesStorageService.class
+distributed\PythonService.class
+distributed\Main.class
+interfaces\FilesStorageService.class
+services\FilesStorageServiceImpl.class

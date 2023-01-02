@@ -23,10 +23,10 @@
 
   </dependencies>
   <modules>
+    <module>core</module>
     <module>server</module>
     <module>client</module>
     <module>JavaService</module>
-      <module>PythonService</module>
-    <module>core</module>
+    <module>PythonService</module>
   </modules>
 </project>

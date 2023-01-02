@@ -37,18 +37,11 @@ public class JavaService {
         List <String> out = new ArrayList<>();
         try {
             storageService.save(file);
-//            System.out.println(rootLocation);
             System.out.println(file.getOriginalFilename());
+            System.out.println("**********");
+            out = runProcess("java D:\\Pranit\\Project\\DS\\uploads\\"+file.getOriginalFilename());
+            System.out.println("**********");
 
-//            runProcess("pwd");
-            System.out.println("**********");
-            runProcess("javac /home/kroyooz/Desktop/Masters/Distributed Systems/Project/DS/uploads/"+file.getOriginalFilename());
-            String filename= file.getOriginalFilename().substring(0,file.getOriginalFilename().indexOf(".java"));
-            System.out.println(filename);
-            out = runProcess("java /home/kroyooz/Desktop/Masters/Distributed Systems/Project/DS/uploads/"+filename);
-            System.out.println("**********");
-//            runProcess("java "+file);
-//            System.out.println("filename is : "+filepath);r
             storageService.delete(file.getOriginalFilename());
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,8 +50,11 @@ public class JavaService {
     }
     private List runProcess(String command) throws Exception {
         Process pro = Runtime.getRuntime().exec(command);
-        List out = printLines( pro.getInputStream());
-        out.add( printLines(pro.getErrorStream()));
+        List out = new ArrayList<>();
+        out = printLines( pro.getInputStream());
+        if(out.size()==0) {
+            out= printLines(pro.getErrorStream());
+        }
         pro.waitFor();
         return out;
     }

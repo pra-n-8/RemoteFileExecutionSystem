@@ -1,6 +1,6 @@
-core/messages/ServerRequestMessage.class
-core/messages/ServerResponseMessage.class
-core/Interfaces/ServiceUtil.class
-core/messages/ClientRequestMessage.class
-core/messages/ClientResponseMessage.class
-core/models/FileInfo.class
+core\messages\ClientResponseMessage.class
+core\messages\ServerRequestMessage.class
+core\messages\ClientRequestMessage.class
+core\models\FileInfo.class
+core\messages\ServerResponseMessage.class
+core\Interfaces\ServiceUtil.class
