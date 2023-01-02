@@ -1,0 +1,5 @@
+service\server\Application.class
+service\server\Server.class
+service\server\Server$1.class
+service\server\link.class
+service\server\Server$NoSuchServerException.class

@@ -1,0 +1,4 @@
+distributed\PythonService.class
+distributed\Main.class
+interfaces\FilesStorageService.class
+services\FilesStorageServiceImpl.class
