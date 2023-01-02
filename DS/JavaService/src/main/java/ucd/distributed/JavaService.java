@@ -15,6 +15,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +42,10 @@ public class JavaService {
 
 //            runProcess("pwd");
             System.out.println("**********");
-            out = runProcess("java D:\\Pranit\\Project\\DS\\uploads\\"+file.getOriginalFilename());
+            runProcess("javac /home/kroyooz/Desktop/Masters/Distributed Systems/Project/DS/uploads/"+file.getOriginalFilename());
+            String filename= file.getOriginalFilename().substring(0,file.getOriginalFilename().indexOf(".java"));
+            System.out.println(filename);
+            out = runProcess("java /home/kroyooz/Desktop/Masters/Distributed Systems/Project/DS/uploads/"+filename);
             System.out.println("**********");
 //            runProcess("java "+file);
 //            System.out.println("filename is : "+filepath);r
@@ -53,12 +57,12 @@ public class JavaService {
     }
     private List runProcess(String command) throws Exception {
         Process pro = Runtime.getRuntime().exec(command);
-        List out = printLines(command + " stdout:", pro.getInputStream());
-
+        List out = printLines( pro.getInputStream());
+        out.add( printLines(pro.getErrorStream()));
         pro.waitFor();
         return out;
     }
-    private List<String> printLines(String cmd, InputStream ins) throws Exception {
+    private List<String> printLines(InputStream ins) throws Exception {
         String line = null;
         List<String> output = new ArrayList<>();
         BufferedReader in = new BufferedReader(
@@ -68,6 +72,5 @@ public class JavaService {
         }
         return output;
     }
-
 }
 
