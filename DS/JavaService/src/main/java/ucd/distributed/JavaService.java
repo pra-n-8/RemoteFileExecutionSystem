@@ -1,8 +1,9 @@
 package ucd.distributed;
 
-import core.messages.ServerResponseMessage;
+import messages.ServerResponseMessage;
 import interfaces.FilesStorageService;
 
+import models.Response;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,8 @@ public class JavaService {
     public ResponseEntity getServer() {
         HttpHeaders headers = new HttpHeaders();
         ServerResponseMessage sm = new ServerResponseMessage();
-        sm.setMessage("http://localhost:8083/runfile");
+        Response res = new Response("Java", "https://localhost:8083/runfile");
+        sm.setMessage(res);
         return new ResponseEntity<>(sm, headers, HttpStatus.CREATED);
     }
 

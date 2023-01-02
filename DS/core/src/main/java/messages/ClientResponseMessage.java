@@ -1,4 +1,4 @@
-package core.messages;
+package messages;
 
 public class ClientResponseMessage {
     private String endpoint;

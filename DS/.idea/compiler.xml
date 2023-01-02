@@ -9,6 +9,7 @@
         <module name="PythonService" />
         <module name="client" />
         <module name="server" />
+        <module name="core" />
         <module name="JavaService" />
         <module name="Server" />
       </profile>
