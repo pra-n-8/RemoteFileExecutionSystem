@@ -1,6 +1,8 @@
 package distributed;
 
+import messages.ServerResponseMessage;
 import interfaces.FilesStorageService;
+import models.Response;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +28,10 @@ public class PythonService {
     @RequestMapping(value = "/getServer", method = RequestMethod.GET)
     public ResponseEntity getServer() {
         HttpHeaders headers = new HttpHeaders();
-        return new ResponseEntity("http://localhost:8085/runfile", headers, HttpStatus.CREATED);
+        ServerResponseMessage sm = new ServerResponseMessage();
+        Response res = new Response("Java", "https://localhost:8085/runfile");
+        sm.setMessage(res);
+        return new ResponseEntity<>(sm, headers, HttpStatus.CREATED);
     }
 
     @RequestMapping(value ="/runfile", method = RequestMethod.POST)

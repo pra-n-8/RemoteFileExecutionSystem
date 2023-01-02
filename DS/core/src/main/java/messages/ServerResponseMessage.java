@@ -1,17 +1,14 @@
-package core.messages;
+package messages;
 
+import models.Response;
 public class ServerResponseMessage {
-    private String message;
+    private Response message;
 
-    public void ResponseMessage(String message) {
-        this.message = message;
-    }
-
-    public String getMessage() {
+    public Response getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
+    public void setMessage(Response message) {
         this.message = message;
     }
 }
