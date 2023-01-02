@@ -6,18 +6,25 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Server" />
+        <module name="PythonService" />
         <module name="client" />
+        <module name="server" />
         <module name="JavaService" />
+        <module name="Server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="javaserver" target="1.8" />
+      <module name="utils" target="18" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="JavaService" options="-parameters" />
+      <module name="PythonService" options="-parameters" />
+      <module name="Server" options="-parameters" />
       <module name="client" options="-parameters" />
+      <module name="server" options="-parameters" />
     </option>
   </component>
 </project>

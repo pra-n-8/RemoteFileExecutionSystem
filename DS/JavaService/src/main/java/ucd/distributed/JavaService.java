@@ -1,9 +1,8 @@
 package ucd.distributed;
 
+import core.messages.ServerResponseMessage;
 import interfaces.FilesStorageService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Configuration;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,12 +11,11 @@ import org.springframework.web.multipart.MultipartFile;
 import services.FilesStorageServiceImpl;
 
 import java.io.BufferedReader;
-import java.io.IOException;
+
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
+
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +27,9 @@ public class JavaService {
     @RequestMapping(value = "/getServer", method = RequestMethod.GET)
     public ResponseEntity getServer() {
         HttpHeaders headers = new HttpHeaders();
-        return new ResponseEntity<>("http://localhost:8080/runfile", headers, HttpStatus.CREATED);
+        ServerResponseMessage sm = new ServerResponseMessage();
+        sm.setMessage("http://localhost:8080/runfile");
+        return new ResponseEntity<>(sm, headers, HttpStatus.CREATED);
     }
 
     @RequestMapping(value ="/runfile", method = RequestMethod.POST)
@@ -37,15 +37,11 @@ public class JavaService {
         List <String> out = new ArrayList<>();
         try {
             storageService.save(file);
-//            System.out.println(rootLocation);
             System.out.println(file.getOriginalFilename());
-
-//            runProcess("pwd");
             System.out.println("**********");
             out = runProcess("java D:\\Pranit\\Project\\DS\\uploads\\"+file.getOriginalFilename());
             System.out.println("**********");
-//            runProcess("java "+file);
-//            System.out.println("filename is : "+filepath);r
+
             storageService.delete(file.getOriginalFilename());
         } catch (Exception e) {
             e.printStackTrace();
@@ -54,12 +50,15 @@ public class JavaService {
     }
     private List runProcess(String command) throws Exception {
         Process pro = Runtime.getRuntime().exec(command);
-        List out = printLines(command + " stdout:", pro.getInputStream());
-
+        List out = new ArrayList<>();
+        out = printLines( pro.getInputStream());
+        if(out.size()==0) {
+            out= printLines(pro.getErrorStream());
+        }
         pro.waitFor();
         return out;
     }
-    private List<String> printLines(String cmd, InputStream ins) throws Exception {
+    private List<String> printLines(InputStream ins) throws Exception {
         String line = null;
         List<String> output = new ArrayList<>();
         BufferedReader in = new BufferedReader(
@@ -69,6 +68,5 @@ public class JavaService {
         }
         return output;
     }
-
 }
 
