@@ -1,0 +1,19 @@
+<div class="container">
+    <div *ngIf="loading" style="text-align: center;">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    <br>
+    <div *ngIf="!loading">
+        <h3> Kindly select the {{type}} servers from the given list </h3>
+        <br><br>
+        <ng-container *ngFor="let server of data">
+            <div  style="border: 2px solid lightgrey; border-radius:20px; padding: 10px">
+                <span style="padding-left: 30px;font-size:30px">{{server}}</span>
+                <button type="button" class="btn btn-primary btn-lg" (click)="onSubmit(server)" style="float: right; margin-right: 30px;">Connect</button>
+            </div>
+            <br><br>
+        </ng-container>
+    </div>
+</div>

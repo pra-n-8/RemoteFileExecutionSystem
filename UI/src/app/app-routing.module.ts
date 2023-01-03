@@ -1,3 +1,4 @@
+import { ServerListComponentComponent } from './server-list-component/server-list-component.component';
 import { HomeComponent } from './home/home.component';
 import { UploadComponentComponent } from './upload-component/upload-component.component';
 import { AppComponent } from './app.component';
@@ -15,7 +16,11 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'file/:type',
+    path: 'servers/:type',
+    component: ServerListComponentComponent
+  },
+  {
+    path: 'upload',
     component: UploadComponentComponent
   },
   {

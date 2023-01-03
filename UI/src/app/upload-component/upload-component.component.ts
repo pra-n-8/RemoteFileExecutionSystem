@@ -1,6 +1,7 @@
+import { ServerDetailsService } from './../server-details.service';
 import { HttpClient, HttpParams, HttpRequest } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-upload-component',
@@ -13,12 +14,23 @@ export class UploadComponentComponent implements OnInit {
   flag: boolean = false;
   showAlert: boolean = false;
   output:string = "";
-  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) { }
+  loading:boolean = false;
+  constructor(
+    private http: HttpClient, 
+    private activatedRoute: ActivatedRoute, 
+    private serverService: ServerDetailsService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
-    this.activatedRoute.queryParams.subscribe(params => {
-      this.type = this.activatedRoute.snapshot.params['type']
-    })
+    if(this.serverService.getServer().trim().length == 0){
+      this.router.navigate(["home"]);
+    }else{
+      this.activatedRoute.queryParams.subscribe(params => {
+        this.type = this.activatedRoute.snapshot.params['type']
+      })
+      console.log(this.serverService.getServer());
+    }
   }
 
   fileChange(event:any) {
@@ -34,12 +46,12 @@ export class UploadComponentComponent implements OnInit {
     if(!this.flag){
       this.showAlert = true;
     }else{
-      this.form.append('type',this.type);
-      console.log(this.form);
+      this.loading = true;
       // change your endpoint here for submit button
       this.http.post("http://localhost:8080/runfile",this.form).subscribe(
           (data:any)=>{
             this.output = data;
+            this.loading = false;
           },
           (error:any)=>{
 
