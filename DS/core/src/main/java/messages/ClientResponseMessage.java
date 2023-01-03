@@ -1,21 +1,10 @@
 package messages;
 
-public class ClientResponseMessage {
-    private String endpoint;
+import models.Response;
 
-    public ClientResponseMessage() {
+public class ClientResponseMessage extends Response {
+
+    public ClientResponseMessage(String execType, String url) {
+        super(execType, url);
     }
-
-    public ClientResponseMessage(String endpoint) {
-        this.endpoint = endpoint;
-    }
-
-    public String getEndpoint() {
-        return this.endpoint;
-    }
-
-    public void setEndpoint(String endpoint) {
-        this.endpoint = endpoint;
-    }
-
 }

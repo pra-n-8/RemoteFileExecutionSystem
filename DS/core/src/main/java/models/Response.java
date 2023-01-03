@@ -3,11 +3,14 @@ public class Response {
     private String execType;
     private String url;
 
+
+
+    public Response() {
+    }
     public Response(String execType, String url) {
         this.execType = execType;
         this.url = url;
     }
-
     public String getExecType() {
         return execType;
     }
