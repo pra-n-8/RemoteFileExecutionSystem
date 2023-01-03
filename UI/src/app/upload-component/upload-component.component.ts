@@ -48,7 +48,7 @@ export class UploadComponentComponent implements OnInit {
     }else{
       this.loading = true;
       // change your endpoint here for submit button
-      this.http.post("http://localhost:8080/runfile",this.form).subscribe(
+      this.http.post(this.serverService.getServer(),this.form).subscribe(
           (data:any)=>{
             this.output = data;
             this.loading = false;

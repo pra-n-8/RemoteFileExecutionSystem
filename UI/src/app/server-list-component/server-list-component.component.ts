@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ServerDetailsService } from '../server-details.service';
@@ -11,7 +11,7 @@ import { ServerDetailsService } from '../server-details.service';
 export class ServerListComponentComponent implements OnInit {
   type:string ="";
   // Change URL here to get the list of servers
-  resourcesURL: string = "http://localhost:8080/resources"
+  resourcesURL: string = "http://localhost:8080/getresources"
   data: string[] = [];
   loading: boolean = true;
   constructor(
@@ -26,7 +26,9 @@ export class ServerListComponentComponent implements OnInit {
       this.type = this.activatedRoute.snapshot.params['type']
     })
 
-    this.http.get<string[]>("http://localhost:3000/servers").subscribe(
+    const params = new HttpParams();
+    params.set('type',this.type);
+    this.http.get<string[]>(this.resourcesURL+"/"+this.type,{params:params}).subscribe(
       (data:string[])=>{
         this.data = data;
         this.loading = false;
