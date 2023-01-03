@@ -28,10 +28,8 @@ public class JavaService {
     @RequestMapping(value = "/getServer", method = RequestMethod.GET)
     public ResponseEntity getServer() {
         HttpHeaders headers = new HttpHeaders();
-        ServerResponseMessage sm = new ServerResponseMessage();
-        Response res = new Response("Java", "https://localhost:8083/runfile");
-        sm.setMessage(res);
-        return new ResponseEntity<>(sm, headers, HttpStatus.CREATED);
+        Response res = new Response("Java","http://localhost:8082/runfile");
+        return new ResponseEntity<>(res, headers, HttpStatus.CREATED);
     }
 
     @RequestMapping(value ="/runfile", method = RequestMethod.POST)

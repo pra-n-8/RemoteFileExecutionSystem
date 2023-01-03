@@ -28,10 +28,8 @@ public class PythonService {
     @RequestMapping(value = "/getServer", method = RequestMethod.GET)
     public ResponseEntity getServer() {
         HttpHeaders headers = new HttpHeaders();
-        ServerResponseMessage sm = new ServerResponseMessage();
-        Response res = new Response("Java", "https://localhost:8085/runfile");
-        sm.setMessage(res);
-        return new ResponseEntity<>(sm, headers, HttpStatus.CREATED);
+        Response res = new Response("Python", "https://localhost:8085/runfile");
+        return new ResponseEntity<>(res, headers, HttpStatus.CREATED);
     }
 
     @RequestMapping(value ="/runfile", method = RequestMethod.POST)

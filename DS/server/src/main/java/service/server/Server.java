@@ -1,48 +1,60 @@
 package service.server;
 
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
-import messages.ServerResponseMessage;
-import models.Response;
 
-import org.springframework.http.HttpEntity;
+import models.Response;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+class link{
+	String type;
+	String url;
 
+	public link(String type, String url) {
+		this.type = type;
+		this.url = url;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+}
 @RestController
 public class Server {
-	final static List<String> URLList =new ArrayList<String>()
+	final static List<link> URLList =new ArrayList()
 	{{
-		add("http://localhost:8083/getServer");
-		add("http://localhost:8085/getServer");
+		add(new link("Java","http://localhost:8083/getServer"));
+		add(new link("Python","http://localhost:8085/getServer"));
 	}};
 
 	@RequestMapping(value = "/getresources", method = RequestMethod.GET)
-	public ResponseEntity getResources() {
-		List<ServerResponseMessage> res = new ArrayList<>();
-		for( String link : URLList){
+	public ResponseEntity getResources(@RequestParam("type") String type) {
+		System.out.println(type);
+		List<String> res = new ArrayList<>();
+		for( link link : URLList){
 			RestTemplate restTemplate = new RestTemplate();
 			try {
-//				System.out.println(restTemplate.getForObject(link, Response.class).getUrl());
-				ServerResponseMessage response = restTemplate.getForObject(link, ServerResponseMessage.class);
-				res.add(response);
+				if(link.getType().toLowerCase().equals(type.toLowerCase())){
+					System.out.println("inside");
+					Response response = restTemplate.getForObject(link.getUrl(), Response.class);
+
+					res.add(response.getUrl());
+				}
 			}
 			catch (Exception e){
 				e.printStackTrace();
 			}
 		}
 		HttpHeaders headers = new HttpHeaders();
-		// returning message testing
 		return new ResponseEntity<>(res, headers, HttpStatus.CREATED);
 	}
 

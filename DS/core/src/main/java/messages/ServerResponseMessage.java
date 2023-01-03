@@ -3,7 +3,6 @@ package messages;
 import models.Response;
 public class ServerResponseMessage {
     private Response message;
-
     public Response getMessage() {
         return message;
     }
