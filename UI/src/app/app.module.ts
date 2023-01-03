@@ -7,13 +7,15 @@ import { UploadComponentComponent } from './upload-component/upload-component.co
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ServerListComponentComponent } from './server-list-component/server-list-component.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     UploadComponentComponent,
-    HomeComponent
+    HomeComponent,
+    ServerListComponentComponent
   ],
   imports: [
     BrowserModule,
