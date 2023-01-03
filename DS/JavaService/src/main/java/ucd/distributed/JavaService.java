@@ -28,7 +28,7 @@ public class JavaService {
     @RequestMapping(value = "/getServer", method = RequestMethod.GET)
     public ResponseEntity getServer() {
         HttpHeaders headers = new HttpHeaders();
-        Response res = new Response("Java","http://localhost:8082/runfile");
+        Response res = new Response("Java","http://localhost:8083/runfile");
         return new ResponseEntity<>(res, headers, HttpStatus.CREATED);
     }
 

@@ -36,8 +36,8 @@ public class Server {
 		add(new link("Python","http://localhost:8085/getServer"));
 	}};
 
-	@RequestMapping(value = "/getresources", method = RequestMethod.GET)
-	public ResponseEntity getResources(@RequestParam("type") String type) {
+	@RequestMapping(value = "/getresources/{type}", method = RequestMethod.GET)
+	public ResponseEntity getResources(@PathVariable("type") String type) {
 		System.out.println(type);
 		List<String> res = new ArrayList<>();
 		for( link link : URLList){

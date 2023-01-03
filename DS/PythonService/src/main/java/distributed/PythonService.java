@@ -28,7 +28,7 @@ public class PythonService {
     @RequestMapping(value = "/getServer", method = RequestMethod.GET)
     public ResponseEntity getServer() {
         HttpHeaders headers = new HttpHeaders();
-        Response res = new Response("Python", "https://localhost:8085/runfile");
+        Response res = new Response("Python", "http://localhost:8085/runfile");
         return new ResponseEntity<>(res, headers, HttpStatus.CREATED);
     }
 
