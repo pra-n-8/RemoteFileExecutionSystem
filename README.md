@@ -22,11 +22,19 @@ For UI
    mvn spring-boot:run -pl server
    mvn spring-boot:run -pl python
    mvn spring-boot:run -pl java
-
-5. Open http://localhost:4200/ in your browser and use the system
+5. Navigate to JavaService/src/main/java/services/FilesStorageServiceImpl and change line 18 path to your
+   machine's upload folder from the repo. Make sure you have double backslashes.
+6. Navigate to JavaService/src/main/java/ucd/distributed/JavaService.java and change line 42 path to your
+   machine's upload folder from the repo. Make sure you have double backslashes.
+7. Navigate to PythonService/src/main/java/distributed/PythonService.java and change line 46 path to your
+   machine's upload folder from the repo. Make sure you have double backslashes.
+8. Navigate to PythonService/src/main/java/services/FilesStorageServiceImpl and change line 21 path to your
+   machine's upload folder from the repo. Make sure you have double backslashes.
+9. Open http://localhost:4200/ in your browser and use the system
 
 ## Link to the report
 
 - 
 
 ## Link to the video
+https://gitlab.com/comp30220/2022/it_elites_distributed_system/-/blob/main/Remote%20Execution%20System%20-%20IT%20Elites.mp4
