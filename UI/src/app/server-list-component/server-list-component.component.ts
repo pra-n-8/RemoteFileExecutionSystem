@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { ServerDetailsService } from '../server-details.service';
 
 @Component({
@@ -30,18 +31,10 @@ export class ServerListComponentComponent implements OnInit {
     const params = new HttpParams();
     params.set('type',this.type);
 
-    setTimeout(()=>{
-      if(this.loading == true){
-        this.loading = false;
-        this.data = ['No response from server'];
-        this.showButton = false;
-      }
-    },30000);
-    
-    this.http.get<string[]>(this.resourcesURL+"/"+this.type,{params:params}).subscribe(
+    let res:Subscription =   this.http.get<string[]>(this.resourcesURL+"/"+this.type,{params:params}).subscribe(
       (data:string[])=>{
         this.data = data;
-        if(data[0] = 'No services available'){
+        if(data[0] == 'No services available'){
           this.showButton = false;
         }
         this.loading = false;
@@ -52,6 +45,15 @@ export class ServerListComponentComponent implements OnInit {
         this.showButton = false;
       }
     );
+
+    setTimeout(()=>{
+      if(this.loading == true){
+        res.unsubscribe();
+        this.loading = false;
+        this.data = ['No response from server'];
+        this.showButton = false;
+      }
+    },30000);
     
   }
 
