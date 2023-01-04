@@ -1,6 +1,5 @@
 messages\ServerResponseMessage.class
 messages\ClientResponseMessage.class
-core\Interfaces\ServiceUtil.class
 messages\ClientRequestMessage.class
 models\Response.class
 messages\ServerRequestMessage.class
