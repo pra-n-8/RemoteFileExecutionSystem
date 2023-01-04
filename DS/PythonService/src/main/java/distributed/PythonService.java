@@ -3,6 +3,7 @@ package distributed;
 import messages.ServerResponseMessage;
 import interfaces.FilesStorageService;
 import models.Response;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,10 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import services.FilesStorageServiceImpl;
 
 
+import javax.annotation.PostConstruct;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -23,6 +26,17 @@ import java.util.List;
 @RestController
 public class PythonService {
 
+    @PostConstruct
+    public void registerService(){
+        RestTemplate restTemplate = new RestTemplate();
+        HttpEntity<Response> request = new HttpEntity<>(new Response("Python","http://localhost:8085/getServer"));
+      try {
+          restTemplate.postForObject("http://localhost:8080/register", request, Response.class);
+          System.out.println("Service Registered");
+      }catch (Exception e){
+          System.out.println("Service cannot be Registered");
+      }
+    }
     FilesStorageService storageService = new FilesStorageServiceImpl();
 
     @RequestMapping(value = "/getServer", method = RequestMethod.GET)
