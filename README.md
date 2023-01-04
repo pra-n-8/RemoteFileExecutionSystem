@@ -33,7 +33,7 @@ For UI
 9. Open http://localhost:4200/ in your browser and use the system
 
 ## Link to the report
-
+https://gitlab.com/comp30220/2022/it_elites_distributed_system/-/blob/master/Report.pdf
 - 
 
 ## Link to the video
