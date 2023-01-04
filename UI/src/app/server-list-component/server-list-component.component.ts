@@ -14,6 +14,7 @@ export class ServerListComponentComponent implements OnInit {
   resourcesURL: string = "http://localhost:8080/getresources"
   data: string[] = [];
   loading: boolean = true;
+  showButton = true;
   constructor(
     private http: HttpClient,
     private activatedRoute: ActivatedRoute,
@@ -28,13 +29,30 @@ export class ServerListComponentComponent implements OnInit {
 
     const params = new HttpParams();
     params.set('type',this.type);
+
+    setTimeout(()=>{
+      if(this.loading == true){
+        this.loading = false;
+        this.data = ['No response from server'];
+        this.showButton = false;
+      }
+    },30000);
+    
     this.http.get<string[]>(this.resourcesURL+"/"+this.type,{params:params}).subscribe(
       (data:string[])=>{
         this.data = data;
+        if(data[0] = 'No services available'){
+          this.showButton = false;
+        }
         this.loading = false;
         console.log(this.loading);
+      },(error:any)=>{
+        this.loading = false;
+        this.data[0] = "Unknown error occured";
+        this.showButton = false;
       }
     );
+    
   }
 
   onSubmit(server:string){
